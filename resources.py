@@ -14,8 +14,11 @@ from pprint import pprint
 import json
 import requests
 
-a = requests.get('https://resources-game.ch/exchange/kurseliste_json.txt').json()
+data = requests.get('https://resources-game.ch/exchange/kurseliste_json.txt').json()
+data_dict = {}
 
+for i in data:
+    data_dict[i.get('NAME_EN')] = i
 # pprint(a)
 
 # Goods = [
@@ -50,18 +53,153 @@ a = requests.get('https://resources-game.ch/exchange/kurseliste_json.txt').json(
 # ]
 
 Mine = [
-
+    'Bauxite',
+    'Iron ore',
 ]
 
 Production = [
+    'Aluminium',
+    'Batteries',
+    'Concrete',
+    'Fertilizer',
+    'Electronics',
+    'Fossil fuel',
+    'Glass',
+]
+
+Units = [
+    'Elite force',
+    'Gangster',
 
 ]
+
+Buff = [
+    'Guest workers',
+]
+
+Recycling = [
+    'Old tires',
+    'Waste glass',
+    'Scrap metal',
+    'Used oil',
+    'Drone wreckage',
+    'Electronic scrap',
+    'Fossils',
+
+    'Gold',
+    'Gold ore',
+    'Ilmenite',
+    'Insecticides',
+    'Limestone',
+    'Attack dogs',
+    'Gravel',
+    'Coal',
+    'Plastics',
+    'Plastic scrap',
+    'Copper',
+    'Chalcopyrite',
+    'Copper coins',
+    'Trucks',
+    'Clay',
+    'Lithium',
+    'Lithium ore',
+    'Wage subsidy',
+    'Medical technology',
+    'Night shift',
+    'Private army',
+    'Quartz sand',
+    'Giant diamond',
+    'Rough diamonds',
+    'Crude oil',
+    'Roman coins',
+    'Scan drones',
+    'Jewellery',
+    'Silver',
+    'Silver ore',
+    'Silicon',
+    'Steel',
+    'Tech upgrade 1',
+    'Tech upgrade 2',
+    'Tech upgrade 3',
+    'Tech upgrade 4',
+    'Titanium',
+    'Overtime',
+    'Watch dogs',
+    'Security staff',
+    'Weapons',
+    'Maintenance kit',
+    'Bricks'
+]
+
 
 Goods = {
     'Old tires': {
         'name': '旧轮胎',
-        'cost': 0
+        'buy': True,
+        'sell': True,
     },
+    'Waste glass': {
+        'name': '废玻璃',
+    },
+    'Scrap metal': {
+        'name': '废金属',
+    },
+    'Used oil': {
+        'name': '废油',
+    },
+    'Drone wreckage': {
+        'name': '无人机残骸',
+    },
+    'Electronic scrap': {
+        'name': '废电器',
+    },
+    'Fossils': {
+        'name': '化石',
+    },
+
+    'Bauxite': {
+        'name': '铝矿',
+    },
+    'Iron ore': {
+        'name': '铁矿',
+    },
+
+
+    'Aluminium': {
+        'name': '铝',
+    },
+    'Batteries': {
+        'name': '电池',
+    },
+    'Concrete': {
+        'name': '水泥',
+    },
+    'Fertilizer': {
+        'name': '肥料',
+    },
+    'Electronics': {
+        'name': '电子元件',
+    },
+    'Fossil fuel': {
+        'name': '燃料',
+    },
+    'Glass': {
+        'name': '玻璃',
+    },
+
+
+    'Elite force': {
+        'name': '精英部队',
+    },
+    'Gangster': {
+        'name': '黑道份子',
+    },
+
+
+    'Guest workers': {
+        'name': 'Guest workers',
+    },
+
 }
 
 example_data = [
@@ -938,3 +1076,11 @@ example_data = [
 #
 # b = json.dumps(a, sort_keys=True, indent=4, separators=(',', ': '))
 # print(b)
+example_dict = {}
+
+for i in example_data:
+    example_dict[i.get('NAME_EN')] = i
+
+# print(example_dict)
+
+print(len(list(example_dict.keys())))
