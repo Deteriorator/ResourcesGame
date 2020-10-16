@@ -14,48 +14,21 @@ from pprint import pprint
 import json
 import requests
 
-data = requests.get('https://resources-game.ch/exchange/kurseliste_json.txt').json()
-data_dict = {}
-
-for i in data:
-    data_dict[i.get('NAME_EN')] = i
-# pprint(a)
-
-# Goods = [
-#     {
-#         '0': '57',
-#         '1': 'Alte Reifen',
-#         '2': 'Old tires',
-#         '3': '21506',
-#         '4': '21835',
-#         '5': '1602661321',
-#         'ITEM_ID': '57',
-#         'NAME_DE': 'Alte Reifen',
-#         'NAME_EN': 'Old tires',
-#         'NORMKURS': '21506',
-#         'SMKURS': '21835',
-#         'TS': '1602661321'
-#     },
-#     {
-#         '0': '115',
-#         '1': 'Altglas',
-#         '2': 'Waste glass',
-#         '3': '26815',
-#         '4': '35740',
-#         '5': '1602661321',
-#         'ITEM_ID': '115',
-#         'NAME_DE': 'Altglas',
-#         'NAME_EN': 'Waste glass',
-#         'NORMKURS': '26815',
-#         'SMKURS': '35740',
-#         'TS': '1602661321'
-#     }
-# ]
-
 Mine = [
     'Bauxite',
     'Iron ore',
     'Gold ore',
+    'Ilmenite',
+    'Limestone',
+    'Gravel',
+    'Coal',
+    'Chalcopyrite',
+    'Clay',
+    'Lithium ore',
+    'Quartz sand',
+    "Rough diamonds",
+    'Crude oil',
+    'Silver ore',
 ]
 
 Production = [
@@ -67,16 +40,36 @@ Production = [
     'Fossil fuel',
     'Glass',
     'Gold',
+    'Insecticides',
+    'Plastics',
+    'Copper',
+    "Trucks",
+    'Lithium',
+    'Medical technology',
+    'Scan drones',
+    'Jewellery',
+    'Silver',
+    'Silicon',
+    'Steel',
+    'Titanium',
+    'Weapons',
+    'Bricks'
 ]
 
 Units = [
     'Elite force',
     'Gangster',
-
+    'Attack dogs',
+    'Private army',
+    'Watch dogs',
+    'Security staff'
 ]
 
 Buff = [
     'Guest workers',
+    'Wage subsidy',
+    'Night shift',
+    'Overtime',
 ]
 
 Recycling = [
@@ -87,51 +80,16 @@ Recycling = [
     'Drone wreckage',
     'Electronic scrap',
     'Fossils',
-
-
-    'Ilmenite',
-    'Insecticides',
-    'Limestone',
-    'Attack dogs',
-    'Gravel',
-    'Coal',
-    'Plastics',
     'Plastic scrap',
-    'Copper',
-    'Chalcopyrite',
     'Copper coins',
-    'Trucks',
-    'Clay',
-    'Lithium',
-    'Lithium ore',
-    'Wage subsidy',
-    'Medical technology',
-    'Night shift',
-    'Private army',
-    'Quartz sand',
     'Giant diamond',
-    'Rough diamonds',
-    'Crude oil',
     'Roman coins',
-    'Scan drones',
-    'Jewellery',
-    'Silver',
-    'Silver ore',
-    'Silicon',
-    'Steel',
     'Tech upgrade 1',
     'Tech upgrade 2',
     'Tech upgrade 3',
     'Tech upgrade 4',
-    'Titanium',
-    'Overtime',
-    'Watch dogs',
-    'Security staff',
-    'Weapons',
     'Maintenance kit',
-    'Bricks'
 ]
-
 
 Goods = {
     'Old tires': {
@@ -141,75 +99,330 @@ Goods = {
     },
     'Waste glass': {
         'name': '废玻璃',
+        'buy': True,
+        'sell': True,
     },
     'Scrap metal': {
         'name': '废金属',
+        'buy': True,
+        'sell': True,
     },
     'Used oil': {
         'name': '废油',
+        'buy': True,
+        'sell': True,
     },
     'Drone wreckage': {
         'name': '无人机残骸',
+        'buy': True,
+        'sell': True,
     },
     'Electronic scrap': {
         'name': '废电器',
+        'buy': True,
+        'sell': True,
     },
     'Fossils': {
         'name': '化石',
+        'buy': True,
+        'sell': True,
     },
+    'Plastic scrap': {
+        'name': '废塑料',
+        'buy': True,
+        'sell': True,
+    },
+    'Copper coins': {
+        'name': '铜币',
+        'buy': True,
+        'sell': True,
+    },
+    'Giant diamond': {
+        'name': '大钻石',
+        'buy': True,
+        'sell': True,
+    },
+    'Roman coins': {
+        'name': '罗马币',
+        'buy': True,
+        'sell': True,
+    },
+    'Tech upgrade 1': {
+        'name': 'Tech upgrade 1',
+        'buy': True,
+        'sell': True,
+    },
+    'Tech upgrade 2': {
+        'name': 'Tech upgrade 2',
+        'buy': True,
+        'sell': True,
+    },
+    'Tech upgrade 3': {
+        'name': 'Tech upgrade 3',
+        'buy': True,
+        'sell': True,
+    },
+    'Tech upgrade 4': {
+        'name': 'Tech upgrade 4',
+        'buy': True,
+        'sell': True,
+    },
+    'Maintenance kit': {
+        'name': '维修工具',
+        'buy': True,
+        'sell': True,
+    },
+
 
     'Bauxite': {
         'name': '铝矿',
+        'buy': True,
+        'sell': True,
     },
     'Iron ore': {
         'name': '铁矿',
+        'buy': True,
+        'sell': True,
     },
     'Gold ore': {
         'name': '金矿',
+        'buy': True,
+        'sell': True,
     },
-
+    'Ilmenite': {
+        'name': '钛铁矿',
+        'buy': True,
+        'sell': True,
+    },
+    'Limestone': {
+        'name': '石灰',
+        'buy': True,
+        'sell': True,
+    },
+    'Gravel': {
+        'name': '砾石',
+        'buy': True,
+        'sell': True,
+    },
+    'Coal': {
+        'name': '煤炭',
+        'buy': True,
+        'sell': True,
+    },
+    'Chalcopyrite': {
+        'name': '黄铜矿',
+        'buy': True,
+        'sell': True,
+    },
+    'Clay': {
+        'name': '黏土矿',
+        'buy': True,
+        'sell': True,
+    },
+    'Lithium ore': {
+        'name': '锂矿',
+        'buy': True,
+        'sell': True,
+    },
+    'Quartz sand': {
+        'name': '石英砂',
+        'buy': True,
+        'sell': True,
+    },
+    "Rough diamonds": {
+        'name': '原钻',
+        'buy': True,
+        'sell': True,
+    },
+    'Crude oil': {
+        'name': '原油',
+        'buy': True,
+        'sell': True,
+    },
+    'Silver ore': {
+        'name': '银矿',
+        'buy': True,
+        'sell': True,
+    },
 
 
     'Aluminium': {
         'name': '铝',
+        'buy': True,
+        'sell': True,
+        'part': {
+            'num': 4,
+            'money': 5000,
+            'Bauxite': 24,
+        }
     },
     'Batteries': {
         'name': '电池',
+        'buy': True,
+        'sell': True,
     },
     'Concrete': {
         'name': '水泥',
+        'buy': True,
+        'sell': True,
     },
     'Fertilizer': {
         'name': '肥料',
+        'buy': True,
+        'sell': True,
     },
     'Electronics': {
         'name': '电子元件',
+        'buy': True,
+        'sell': True,
     },
     'Fossil fuel': {
         'name': '燃料',
+        'buy': True,
+        'sell': True,
     },
     'Glass': {
         'name': '玻璃',
+        'buy': True,
+        'sell': True,
     },
     'Gold': {
-        'name': '金',
+        'name': '金条',
+        'buy': True,
+        'sell': True,
     },
-
+    'Insecticides': {
+        'name': '杀虫剂',
+        'buy': True,
+        'sell': True,
+    },
+    'Plastics': {
+        'name': '塑料',
+        'buy': True,
+        'sell': True,
+    },
+    'Copper': {
+        'name': '铜',
+        'buy': True,
+        'sell': True,
+    },
+    "Trucks": {
+        'name': '货车',
+        'buy': True,
+        'sell': True,
+    },
+    'Lithium': {
+        'name': '锂',
+        'buy': True,
+        'sell': True,
+    },
+    'Medical technology': {
+        'name': '医疗科技',
+        'buy': True,
+        'sell': True,
+    },
+    'Scan drones': {
+        'name': '无人机',
+        'buy': True,
+        'sell': True,
+    },
+    'Jewellery': {
+        'name': '珠宝',
+        'buy': True,
+        'sell': True,
+    },
+    'Silver': {
+        'name': '银',
+        'buy': True,
+        'sell': True,
+    },
+    'Silicon': {
+        'name': '硅',
+        'buy': True,
+        'sell': True,
+    },
+    'Steel': {
+        'name': '钢铁',
+        'buy': True,
+        'sell': True,
+    },
+    'Titanium': {
+        'name': '钛',
+        'buy': True,
+        'sell': True,
+    },
+    'Weapons': {
+        'name': '武器',
+        'buy': True,
+        'sell': True,
+    },
+    'Bricks': {
+        'name': '红砖',
+        'buy': True,
+        'sell': True,
+    },
 
 
     'Elite force': {
         'name': '精英部队',
+        'buy': True,
+        'sell': True,
     },
     'Gangster': {
         'name': '黑道份子',
+        'buy': True,
+        'sell': True,
+    },
+    'Attack dogs': {
+        'name': '攻击犬',
+        'buy': True,
+        'sell': True,
+    },
+    'Private army': {
+        'name': '私人军队',
+        'buy': True,
+        'sell': True,
+    },
+    'Watch dogs': {
+        'name': '看门狗',
+        'buy': True,
+        'sell': True,
+    },
+    'Security staff': {
+        'name': '保全人员',
+        'buy': True,
+        'sell': True,
     },
 
 
     'Guest workers': {
         'name': 'Guest workers',
+        'buy': True,
+        'sell': True,
     },
-
+    'Wage subsidy': {
+        'name': 'Wage subsidy',
+        'buy': True,
+        'sell': True,
+    },
+    'Night shift': {
+        'name': 'Night shift',
+        'buy': True,
+        'sell': True,
+    },
+    'Overtime': {
+        'name': 'Overtime',
+        'buy': True,
+        'sell': True,
+    },
 }
+
+data = requests.get('https://resources-game.ch/exchange/kurseliste_json.txt').json()
+data_dict = {}
+
+for i in data:
+    data_dict[i.get('NAME_EN')] = i
+
 
 example_data = [
     {
