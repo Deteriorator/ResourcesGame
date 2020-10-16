@@ -55,6 +55,7 @@ for i in data:
 Mine = [
     'Bauxite',
     'Iron ore',
+    'Gold ore',
 ]
 
 Production = [
@@ -65,6 +66,7 @@ Production = [
     'Electronics',
     'Fossil fuel',
     'Glass',
+    'Gold',
 ]
 
 Units = [
@@ -86,8 +88,7 @@ Recycling = [
     'Electronic scrap',
     'Fossils',
 
-    'Gold',
-    'Gold ore',
+
     'Ilmenite',
     'Insecticides',
     'Limestone',
@@ -163,6 +164,10 @@ Goods = {
     'Iron ore': {
         'name': '铁矿',
     },
+    'Gold ore': {
+        'name': '金矿',
+    },
+
 
 
     'Aluminium': {
@@ -186,6 +191,10 @@ Goods = {
     'Glass': {
         'name': '玻璃',
     },
+    'Gold': {
+        'name': '金',
+    },
+
 
 
     'Elite force': {
